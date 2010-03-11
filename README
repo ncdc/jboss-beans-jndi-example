@@ -1,0 +1,3 @@
+This project contains sample code for automatically binding beans deployed via the JBoss Microcontainer into JNDI.
+
+Build files are provided for both Maven and Gradle.
