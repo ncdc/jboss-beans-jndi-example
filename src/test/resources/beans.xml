@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:jboss:bean-deployer:2.0 bean-deployer_2_0.xsd"
+	xmlns="urn:jboss:bean-deployer:2.0"
+>
+	<bean name="AspectManager" class="org.jboss.aop.AspectManager">
+        <constructor factoryClass="org.jboss.aop.AspectManager" factoryMethod="instance"/>
+    </bean>
+    
+    <aop:lifecycle-install xmlns:aop="urn:jboss:aop-beans:1.0"
+	    name="InstallAdvice"
+	    class="com.amentra.eap5.jndi.LifecycleCallback"
+	    classes="@com.amentra.eap5.jndi.JNDI">
+	</aop:lifecycle-install>
+    
+	<bean name="NamingService" class="org.jnp.server.NamingBeanImpl">
+        <property name="installGlobalService">true</property>
+        <property name="useGlobalService">false</property>
+    </bean>
+    
+	<bean name="MyService" class="com.amentra.eap5.jndi.MyService" />
+</deployment>
